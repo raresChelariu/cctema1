@@ -33,7 +33,7 @@ http.createServer(async function (req, serverRes) {
                     serverRes.end();
                     return;
                 }
-                serverRes.writeHead(200, {'Content-Type':'text/html'});
+                serverRes.writeHead(200, {'Content-Type': 'text/html'});
                 serverRes.write(data);
                 serverRes.end();
             })
@@ -54,6 +54,11 @@ http.createServer(async function (req, serverRes) {
             break
         case '/metrics':
             serverRes.writeHead(200, {'Content-Type': 'text/plain; charset=UTF-8'})
+            var text = fs.readFileSync('./storage/req.csv',
+                {encoding: 'utf8', flag: 'r'});
+            // var lines = text.trim().split(/\s*[\r\n]+\s*/g);
+            // serverRes.write(`Average latency : ${SaveToDB.avgLatency(lines)}`)
+            // serverRes.end(text)
             serverRes.end('To be implemented')
             break
         default:
